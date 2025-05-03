@@ -1,19 +1,14 @@
 import streamlit as st
 from PIL import Image
-import os
 
-# Set page config
-st.set_page_config(layout="wide", page_title="Amazon Electronics Final Dashboard")
+st.set_page_config(page_title="Amazon Electronics Dashboard", layout="wide")
 
 st.title("🔎 Amazon Electronics Reviews – Final Project Dashboard")
 st.markdown("This dashboard showcases key insights from Amazon Electronics reviews using pre-generated visualizations and a fast-loading layout. ⚡")
 
 st.header("📊 Visual Insights (Static Grid)")
 
-# Path to project folder
-base_path = "C:/Users/aishwarya/PycharmProjects/pythonProjectCS370"
-
-# Image titles and their corresponding filenames
+# Image titles and their corresponding filenames (must match filenames in repo!)
 images = {
     "Star Rating Distribution": "download.png",
     "Top 10 Most Reviewed Products": "download (2).png",
@@ -24,7 +19,7 @@ images = {
     "Topic Word Scores": "newplot (2).png"
 }
 
-# --- Display Images in Grid ---
+# Grid layout for image display
 rows = [
     ["Star Rating Distribution", "Top 10 Most Reviewed Products"],
     ["Word Cloud of Frequent Review Terms", "Hierarchical Clustering"],
@@ -32,10 +27,11 @@ rows = [
     ["Topic Word Scores"]
 ]
 
+# Display images in layout
 for row in rows:
     cols = st.columns(len(row))
     for col, title in zip(cols, row):
-        file_path = os.path.join(base_path, images[title])
+        file_path = images[title]
         try:
             image = Image.open(file_path)
             col.image(image, caption=title, use_container_width=True)
